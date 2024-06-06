@@ -1,5 +1,6 @@
 package com.example.vai.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,16 @@ public class FornecedorController {
 			return repository.findAll();
 		}
 		
+		@RequestMapping(value = "/fornecedores/{id}", method = RequestMethod.GET)
+		public ResponseEntity<Object> getOne(@PathVariable(value = "id") long id){
+			Optional<Fornecedor> fornecedor = repository.findById(id);
+			if (fornecedor.isEmpty()){
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não encontrado");	
+			}
+			List<Fornecedor> lista = new ArrayList<Fornecedor>();
+			lista.add(fornecedor.get());
+			return ResponseEntity.status(HttpStatus.OK).body(lista);
+		}
 
 		@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
 		public Fornecedor post(@Validated @RequestBody Fornecedor fornecedor) {
@@ -37,7 +48,7 @@ public class FornecedorController {
 		
 		
 		@RequestMapping(value = "/editar/{id}", method = RequestMethod.PUT)
-		public ResponseEntity<Fornecedor> Put(@PathVariable(value = "id") long id, @Validated @RequestBody Fornecedor novoFornecedor){
+		public ResponseEntity<Fornecedor> put(@PathVariable(value = "id") long id, @Validated @RequestBody Fornecedor novoFornecedor){
 			Optional<Fornecedor> fornecedor = repository.findById(id);
 			if (fornecedor.isPresent()) {
 				Fornecedor outroFornecedor = fornecedor.get();
@@ -51,7 +62,7 @@ public class FornecedorController {
 		}
 		
 		@RequestMapping(value = "/deletar/{id}", method = RequestMethod.DELETE)
-		public ResponseEntity<Object> Delete(@PathVariable(value = "id") long id){
+		public ResponseEntity<Object> delete(@PathVariable(value = "id") long id){
 			Optional<Fornecedor> fornecedor = repository.findById(id);
 			if (fornecedor.isPresent()) {
 				repository.delete(fornecedor.get());
