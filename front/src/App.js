@@ -11,7 +11,7 @@ function App() {
   const fornecedor = {
     id: 0,
     nome: '',
-    cpf: 0
+    cnpj: 0
   }
 
   const [btnCadastrar, setBtnCadastrar] = useState(true);
@@ -31,16 +31,13 @@ function App() {
   }
 
   const listarUm = (indice) => {
-    console.log(indice);
     fetch("http://localhost:8080/fornecedores/" + indice)
       .then(retorno => retorno.json())
       .then(retorno_convertido => setFornecedor(retorno_convertido))
   }
 
   const digitar = (e) => {
-    console.log(e)
     setObjFornecedor({ ...objFornecedor, [e.target.name]: e.target.value })
-    console.log(objFornecedor)
   }
 
 
@@ -59,6 +56,7 @@ function App() {
           alert(retorno_convertido.mensagem);
         } else {
           setFornecedor([...fornecedores, retorno_convertido]);
+          console.log(fornecedores);
           alert('Fornecedor cadastrado com sucesso');
           limparForm();
         }
@@ -66,30 +64,23 @@ function App() {
   }
 
   const limparForm = () => {
-    console.log(fornecedor);
     setObjFornecedor(fornecedor);
     setBtnCadastrar(true);
   }
 
   const selecionarFornecedor = (indice) => {
-    console.log("indice");
-    console.log(indice);
     let temp = {
       id: indice,
       nome: "",
-      cpf: "",
+      cnpj: "",
     }
     setObjFornecedor(temp);
-    {/* id: indice, ...objFornecedor); */ }
-    console.log({ id: indice, ...objFornecedor })
     setBtnCadastrar(false);
   }
 
 
   const apagar = () => {
 
-    console.log(fornecedor);
-    console.log(objFornecedor.id);
     fetch('http://localhost:8080/deletar/' + objFornecedor.id, {
       method: 'delete',
       headers: {
@@ -100,8 +91,7 @@ function App() {
       .then(listar())
       //.then(retorno => retorno.json())
       .then(retorno_convertido => {
-        console.log("aqui");
-        alert("Boa campeão " + objFornecedor.nome);
+        alert("Removido " + objFornecedor.nome);
 
         let vetorTemp = [...fornecedores];
 
@@ -110,7 +100,6 @@ function App() {
         });
 
         vetorTemp.splice(indice, 1);
-        console.log(vetorTemp);
 
         setFornecedor(vetorTemp);
 
@@ -125,7 +114,7 @@ function App() {
     let temp = {
       id: objFornecedor.id,
       nome: forn.nome,
-      cpf: parseInt(forn.cpf),
+      cnpj: parseInt(forn.cnpj),
     }
     fetch('http://localhost:8080/editar/' + id, {
       method: 'put',
@@ -140,7 +129,7 @@ function App() {
         if (retorno_convertido.mensagem !== undefined) {
           alert(retorno_convertido.mensagem);
         } else {
-          alert('Produto alterado com sucesso');
+          alert('Fornecedor alterado com sucesso');
 
           let vetorTemp = [...fornecedores];
           
@@ -161,8 +150,11 @@ function App() {
   const [mostrarTabela, setMostraTabela] = useState(false)
   const flagMostrarTabela = () => {
     if (procurarUm === false || objFornecedor.id === '') {
-      setMostraTabela(true);
+      setMostraTabela(false);
+      
       listar();
+      setMostraTabela(true);
+      
     }
     else {
       if (objFornecedor.id !== 0) {

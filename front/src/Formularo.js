@@ -8,7 +8,7 @@ function Formulario({ mostrarBtn, obj, cadastrar, cancelar, apagar, editar }) {
     const fornecedor2 = {
         id: 0,
         nome: '',
-        cpf: 0
+        cnpj: 0
     }
 
     const [forn, setFornecedor2] = useState(fornecedor2);
@@ -16,8 +16,14 @@ function Formulario({ mostrarBtn, obj, cadastrar, cancelar, apagar, editar }) {
         setFornecedor2({ ...forn, [e.target.name]: e.target.value });
     };
 
+    const limparFormCadastro = () => {
+        setFornecedor2(forn);
+    }
+
+
     const cadastro = () => {
         cadastrar(forn);
+        limparFormCadastro();
     }
 
     const editarForn = () => {
@@ -28,7 +34,7 @@ function Formulario({ mostrarBtn, obj, cadastrar, cancelar, apagar, editar }) {
     return (
         <form>
             <Input eventoTeclado={digitarFormulario} name="nome" placeholder="Nome" text="Nome" />
-            <Input eventoTeclado={digitarFormulario} name="cpf" placeholder="CPF" text="cpf" />
+            <Input eventoTeclado={digitarFormulario} name="cnpj" placeholder="CNPJ" text="cnpj" />
             {/*<input type="text" value={obj.nome} onChange={eventoTeclado} name="nome" placeholder="Nome" className="form-control" />*/}
             {/*<input type="text" value={obj.cpf} onChange={eventoTeclado} name='cpf' placeholder="CPF" className="form-control" />*/}
 

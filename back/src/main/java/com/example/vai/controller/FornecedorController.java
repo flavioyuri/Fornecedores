@@ -53,7 +53,7 @@ public class FornecedorController {
 			if (fornecedor.isPresent()) {
 				Fornecedor outroFornecedor = fornecedor.get();
 				outroFornecedor.setNome(novoFornecedor.getNome());
-				outroFornecedor.setCpf(novoFornecedor.getCpf());
+				outroFornecedor.setCnpj(novoFornecedor.getCnpj());
 				repository.save(outroFornecedor);
 				return new ResponseEntity<Fornecedor>(outroFornecedor, HttpStatus.OK);
 			}

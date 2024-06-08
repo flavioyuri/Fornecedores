@@ -7,7 +7,7 @@ function Tabela({vetor, selecionar, tabela}){
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
-                        <th>CPF</th>
+                        <th>CNPJ</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -16,7 +16,7 @@ function Tabela({vetor, selecionar, tabela}){
                             <tr key={indice}>
                                 <td>{obj.id}</td>
                                 <td>{obj.nome}</td>
-                                <td>{obj.cpf}</td>
+                                <td>{obj.cnpj}</td>
                                 <td><Botao name={"Selecionar"} onclick={() => {selecionar(obj.id)}} text={"Selecionar"} value={"Selecionar"} classe="btn btn-success" /></td>
                             </tr>
         

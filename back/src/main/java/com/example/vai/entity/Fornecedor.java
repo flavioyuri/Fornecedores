@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Postgres")
+@Table(name="Fornecedores")
 public class Fornecedor {
     
     @Id
@@ -15,7 +15,7 @@ public class Fornecedor {
     private long id;
 
     private String nome;
-    private int cpf;
+    private int cnpj;
 
     public long getId() {
         return id;
@@ -29,11 +29,11 @@ public class Fornecedor {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public int getCpf() {
-        return cpf;
+    public int getCnpj() {
+        return cnpj;
     }
-    public void setCpf(int cpf) {
-        this.cpf = cpf;
+    public void setCnpj(int cnpj) {
+        this.cnpj = cnpj;
     }
 
     
