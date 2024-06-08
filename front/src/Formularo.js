@@ -1,56 +1,58 @@
+import Botao from "./Botao";
 import Input from "./Input";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 
-function Formulario({mostrarBtn, eventoTeclado, obj,  cadastrar, cancelar, apagar, editar,  showOrHide, showElement, fornecedores, selecionarFornecedor}){
+function Formulario({ mostrarBtn, obj, cadastrar, cancelar, apagar, editar }) {
 
     const fornecedor2 = {
-        id : 0,
-        nome : '',
-        cpf : 0
-      }
-    
+        id: 0,
+        nome: '',
+        cpf: 0
+    }
+
     const [forn, setFornecedor2] = useState(fornecedor2);
-    const digitar2 = (e) => {
-        setFornecedor2({...forn, [e.target.name]:e.target.value});
-      };
+    const digitarFormulario = (e) => {
+        setFornecedor2({ ...forn, [e.target.name]: e.target.value });
+    };
 
     const cadastro = () => {
         cadastrar(forn);
     }
 
     const editarForn = () => {
-        editar(forn);
+        editar({ id: obj.id, ...forn });
     }
 
-    const selecionarFornecedor2 = (indice) => {
-        setFornecedor2(forn[indice]);
-    }
-    
-    return(
+
+    return (
         <form>
-            <Input eventoTeclado={digitar2} name="nome" placeholder="Nome" text="Nome" />
-            <Input eventoTeclado={digitar2} name="cpf" placeholder="CPF" text="cpf" />
-        {/*<input type="text" value={obj.nome} onChange={eventoTeclado} name="nome" placeholder="Nome" className="form-control" />*/}
-        {/*<input type="text" value={obj.cpf} onChange={eventoTeclado} name='cpf' placeholder="CPF" className="form-control" />*/}
+            <Input eventoTeclado={digitarFormulario} name="nome" placeholder="Nome" text="Nome" />
+            <Input eventoTeclado={digitarFormulario} name="cpf" placeholder="CPF" text="cpf" />
+            {/*<input type="text" value={obj.nome} onChange={eventoTeclado} name="nome" placeholder="Nome" className="form-control" />*/}
+            {/*<input type="text" value={obj.cpf} onChange={eventoTeclado} name='cpf' placeholder="CPF" className="form-control" />*/}
 
-        {
-            mostrarBtn 
-            ? 
-            <div>
-                <input type="button" value="Cadastrar" onClick={cadastro} className="btn btn-primary"/>
-                {/*<input type="button" value="Tabela"  className="btn btn-warning" onClick={showOrHide}/>*/}
-            </div>
-            :
-            <div>
-                <input type="button" value="Apagar"  className="btn btn-danger" onClick={apagar} />
-                <input type="button" value="Editar"  className="btn btn-warning" onClick={editarForn}/>
-                <input type="button" value="Cancelar"  className="btn btn-secondary" onClick={cancelar}/>
-                {/*<input type="button" value="Tabela"  className="btn btn-warning" onClick={showOrHide}/>*/}
-            </div>
-        }
+            {
+                mostrarBtn
+                    ?
+                    <div>
+                        <Botao classe={"btn btn-primary"} name={"Cadastrar"} value={"Cadastrar"} onclick={cadastro} />
+                        {/*<input type="button" value="Cadastrar" onClick={cadastro} className="btn btn-primary" />
+                        <input type="button" value="Tabela"  className="btn btn-warning" onClick={showOrHide}/>*/}
+                    </div>
+                    :
+                    <div>
+                        <Botao classe={"btn btn-danger"} name={"Apagar"} value={"Apagar"} onclick={apagar} />
+                        <Botao classe={"btn btn-warning"} name={"Editar"} value={"Editar"} onclick={editarForn} />
+                        <Botao classe={"btn btn-secondary"} name={"Cancelar"} value={"Cancelar"} onclick={cancelar} />
+                        {/*<input type="button" value="Apagar" className="btn btn-danger" onClick={apagar} />
+                        <input type="button" value="Editar" className="btn btn-warning" onClick={editarForn} />
+                        <input type="button" value="Cancelar" className="btn btn-secondary" onClick={cancelar} />
+                        <input type="button" value="Tabela"  className="btn btn-warning" onClick={showOrHide}/>*/}
+                    </div>
+            }
 
-        
+
         </form>
     )
 }

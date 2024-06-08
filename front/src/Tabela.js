@@ -1,3 +1,4 @@
+import Botao from "./Botao";
 function Tabela({vetor, selecionar, tabela}){
     return(
         <div>
@@ -13,10 +14,10 @@ function Tabela({vetor, selecionar, tabela}){
                     {
                         vetor.map((obj, indice) => (
                             <tr key={indice}>
-                                <td>{indice+1}</td>
+                                <td>{obj.id}</td>
                                 <td>{obj.nome}</td>
                                 <td>{obj.cpf}</td>
-                                <td><button className="btn btn-success" onClick={() => {selecionar(indice)}}>Selecionar</button></td>
+                                <td><Botao name={"Selecionar"} onclick={() => {selecionar(obj.id)}} text={"Selecionar"} value={"Selecionar"} classe="btn btn-success" /></td>
                             </tr>
         
                         ))
