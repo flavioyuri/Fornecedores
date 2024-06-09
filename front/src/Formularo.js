@@ -34,7 +34,7 @@ function Formulario({ mostrarBtn, obj, cadastrar, cancelar, apagar, editar }) {
     return (
         <form>
             <Input eventoTeclado={digitarFormulario} name="nome" placeholder="Nome" text="Nome" />
-            <Input eventoTeclado={digitarFormulario} name="cnpj" placeholder="CNPJ" text="cnpj" />
+            <Input eventoTeclado={digitarFormulario} name="cnpj" placeholder="CNPJ" text="CNPJ" />
             {/*<input type="text" value={obj.nome} onChange={eventoTeclado} name="nome" placeholder="Nome" className="form-control" />*/}
             {/*<input type="text" value={obj.cpf} onChange={eventoTeclado} name='cpf' placeholder="CPF" className="form-control" />*/}
 

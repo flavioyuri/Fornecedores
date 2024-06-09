@@ -14,6 +14,7 @@ function App() {
     cnpj: 0
   }
 
+
   const [btnCadastrar, setBtnCadastrar] = useState(true);
   const [fornecedores, setFornecedor] = useState([]);
   const [objFornecedor, setObjFornecedor] = useState(fornecedor);
@@ -137,9 +138,9 @@ function App() {
             return f.id === id;
           });
 
-          
+          console.log(temp);
           vetorTemp[indice] = temp;
-
+          console.log(vetorTemp);
           setFornecedor(vetorTemp);
 
           limparForm();

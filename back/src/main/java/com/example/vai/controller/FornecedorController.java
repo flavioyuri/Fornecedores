@@ -40,6 +40,7 @@ public class FornecedorController {
 			return ResponseEntity.status(HttpStatus.OK).body(lista);
 		}
 
+
 		@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
 		public Fornecedor post(@Validated @RequestBody Fornecedor fornecedor) {
 			return repository.save(fornecedor);

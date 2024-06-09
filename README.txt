@@ -1,0 +1,1 @@
+Aplicação simples utilizando Spring Boot + React
