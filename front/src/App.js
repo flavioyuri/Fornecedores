@@ -138,9 +138,7 @@ function App() {
             return f.id === id;
           });
 
-          console.log(temp);
           vetorTemp[indice] = temp;
-          console.log(vetorTemp);
           setFornecedor(vetorTemp);
 
           limparForm();
